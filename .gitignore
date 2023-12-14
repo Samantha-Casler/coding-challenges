@@ -1,0 +1,7 @@
+!.idea/codeStyle
+**/application-local.properties
+*.iml
+.idea
+.java-version
+/.vscode
+classes/
