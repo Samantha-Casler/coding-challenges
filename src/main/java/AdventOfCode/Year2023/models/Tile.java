@@ -3,14 +3,14 @@ package AdventOfCode.Year2023.models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.util.List;
 
 @Getter
-@ToString
 @AllArgsConstructor
-public class Lens {
-        String label;
-        @Setter
-        int focalLength;
-
+public class Tile {
+    int x;
+    int y;
+    @Setter
+    List<String> directions;
 }

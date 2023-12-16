@@ -5,12 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+@Setter
 @Getter
 @ToString
 @AllArgsConstructor
-public class Lens {
-        String label;
-        @Setter
-        int focalLength;
-
+public class Beam {
+    int x;
+    int y;
+    String direction;
 }

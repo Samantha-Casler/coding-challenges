@@ -41,14 +41,14 @@ public class Day15 {
             if (s.contains("-")) {
                 String[] label = s.split("-");
                 int boxNumber = hash(label[0]);
-                boxes.get(boxNumber).removeIf(lens -> lens.label().equals(label[0]));
+                boxes.get(boxNumber).removeIf(lens -> lens.getLabel().equals(label[0]));
             } else {
                 String[] split = s.split("=");
                 String label = split[0];
                 int boxNumber = hash(label);
                 boolean found = false;
                 for(int i = 0; i < boxes.get(boxNumber).size(); i++) {
-                    if (boxes.get(boxNumber).get(i).label().equals(label)) {
+                    if (boxes.get(boxNumber).get(i).getLabel().equals(label)) {
                         boxes.get(boxNumber).get(i).setFocalLength(Integer.parseInt(split[1]));
                         found = true;
                     }
@@ -62,7 +62,7 @@ public class Day15 {
         for(int i = 0; i < boxes.size(); i++) {
             if (!boxes.get(i).isEmpty()) {
                 for(int j = 0; j < boxes.get(i).size(); j++) {
-                    int focusPower = (i + 1) * (j + 1) * boxes.get(i).get(j).focalLength();
+                    int focusPower = (i + 1) * (j + 1) * boxes.get(i).get(j).getFocalLength();
                     totalPart2 += focusPower;
                 }
             }

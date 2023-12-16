@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import static AdventOfCode.util.MapUtils.createMap;
+
 public class Day14 {
     static int width;
     static int height;
@@ -20,7 +22,7 @@ public class Day14 {
 
         // Part 1
         long startTime = System.nanoTime();
-        char[][] rockMap = createMap(lines);
+        char[][] rockMap = createMap(lines, width, height);
         long totalLoad = calculateLoad(rollNorth(rockMap));
 
         System.out.println("Result part 1 : " + totalLoad + " in " + TimeUnit.NANOSECONDS.toMillis((System.nanoTime()-startTime))+"ms");
@@ -28,7 +30,7 @@ public class Day14 {
 
         // Part 2
         startTime = System.nanoTime();
-        rockMap = createMap(lines);
+        rockMap = createMap(lines, width, height);
 
         Map<String, Long> occuranceMap = new HashMap<>();
 
@@ -45,18 +47,6 @@ public class Day14 {
         totalLoad = calculateLoad(rockMap);
 
         System.out.println("Result part 2 : " + totalLoad + " in " + TimeUnit.NANOSECONDS.toMillis((System.nanoTime()-startTime))+"ms");
-    }
-
-
-    private static char[][] createMap(List<String> lines) {
-        char[][] map = new char[width][height];
-        for (int y=0;y<lines.size();y++) {
-            String line = lines.get(y);
-            for (int x=0;x<line.length();x++) {
-                map[x][y] = line.charAt(x);
-            }
-        }
-        return map;
     }
 
     private static char[][] rollNorth(char[][] rockMap) {
