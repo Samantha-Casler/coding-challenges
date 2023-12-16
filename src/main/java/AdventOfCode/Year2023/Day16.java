@@ -20,6 +20,8 @@ public class Day16 {
     static List<Beam> movingBeams = new java.util.ArrayList<>();
     static List<Beam> newBeams = new java.util.ArrayList<>();
     static List<Beam> removeBeams = new java.util.ArrayList<>();
+    static List<Beam> beamsToTry = new java.util.ArrayList<>();
+
     static Tile[][] tileMap;
     static char[][] mirrorMap;
 
@@ -56,6 +58,42 @@ public class Day16 {
 
         System.out.println("Result part 1 : " + totalEnergized + " in " + java.util.concurrent.TimeUnit.NANOSECONDS.toMillis((System.nanoTime()-startTime))+"ms");
 
+
+        // Part 2
+        startTime = System.nanoTime();
+        mirrorMap = createMap(lines, width, height);
+        tileMap = createTileMap(width, height);
+        int totalEnergizedPart2 = 0;
+        resetBeamsToTry();
+
+        for (int i = 0; i < beamsToTry.size(); i++) {
+            tileMap = createTileMap(width, height);
+            movingBeams.add(beamsToTry.get(i));
+            while (!movingBeams.isEmpty()) {
+                removeBeams.clear();
+                newBeams.clear();
+                for (Beam movingBeam : movingBeams) {
+                    determineBeamDirection(movingBeam);
+                }
+                movingBeams.removeAll(removeBeams);
+                movingBeams.addAll(newBeams);
+            }
+
+            totalEnergized = 0;
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    if (!tileMap[x][y].getDirections().isEmpty()) {
+                        totalEnergized++;
+                    }
+                }
+            }
+
+            if (totalEnergizedPart2 < totalEnergized) {
+                totalEnergizedPart2 = totalEnergized;
+            }
+            resetBeamsToTry();
+        }
+        System.out.println("Result part 1 : " + totalEnergizedPart2 + " in " + java.util.concurrent.TimeUnit.NANOSECONDS.toMillis((System.nanoTime()-startTime))+"ms");
 
 
     }
@@ -169,6 +207,25 @@ public class Day16 {
             }
         }
         return map;
+    }
+
+    // Still not sure how but it was resetting the beamToTry value to the last one before counting the totalEnergized... ??? Doesnt make sense
+    // A bit hacky but it works lol
+    private static void resetBeamsToTry() {
+        beamsToTry.clear();
+        for (int y = 0; y < height; y++) {
+            Beam beam1 = new Beam(0, y, "right");
+            beamsToTry.add(beam1);
+            Beam beam2 = new Beam(width - 1, y, "left");
+            beamsToTry.add(beam2);
+        }
+
+        for (int x = 0; x < width; x++) {
+            Beam beam1 = new Beam(x, 0, "down");
+            beamsToTry.add(beam1);
+            Beam beam2 = new Beam(x, height - 1, "up");
+            beamsToTry.add(beam2);
+        }
     }
 
 }
