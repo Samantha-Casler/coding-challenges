@@ -1,13 +1,12 @@
 package util
 
-import java.nio.file.Files
-import java.nio.file.Path
+import java.io.File
 
 class UtilFunctions {
     companion object {
-        fun readInput(fileName:String): String {
+        fun readInput(fileName:String): List<String> {
             try {
-                return Files.readString(Path.of(fileName).toAbsolutePath())
+                return File(fileName).readLines()
             } catch (e: Exception) {
                 throw IllegalStateException(e)
             }

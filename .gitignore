@@ -5,4 +5,4 @@
 .java-version
 /.vscode
 classes/
-**.txt
+*.txt

@@ -5,12 +5,11 @@ import util.UtilFunctions
 class Day1 {
     companion object {
         fun day1() {
-            val input: String = UtilFunctions.readInput("Day1-2024-Input.txt")
+            val input = UtilFunctions.readInput("Day1-2024-Input.txt")
 
-            val lines = input.lines()
             val list1: MutableList<String> = ArrayList()
             val list2: MutableList<String> = ArrayList()
-            for (line in lines) {
+            for (line in input) {
                 val numbers = line.split(" {3}".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 if (numbers.size != 2) {
                     break
