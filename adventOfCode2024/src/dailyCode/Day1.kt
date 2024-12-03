@@ -5,7 +5,7 @@ import util.UtilFunctions
 class Day1 {
     companion object {
         fun day1() {
-            val input = UtilFunctions.readInput("Day1-2024-Input.txt")
+            val input = UtilFunctions.readInputLines("Day1-2024-Input.txt")
 
             val list1: MutableList<String> = ArrayList()
             val list2: MutableList<String> = ArrayList()

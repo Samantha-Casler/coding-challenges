@@ -8,7 +8,7 @@ class Day2 {
 
     companion object {
         fun day2() {
-            val input = UtilFunctions.readInput("Day2-2024-Input.txt").map { it.split(" ").map { it.toInt() } }
+            val input = UtilFunctions.readInputLines("Day2-2024-Input.txt").map { it.split(" ").map { it.toInt() } }
             var countSafePart1 = 0
             for (line in input) {
                 day2Part1(line).let { if (it) countSafePart1++ }

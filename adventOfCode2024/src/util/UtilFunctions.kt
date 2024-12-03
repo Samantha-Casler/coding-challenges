@@ -4,9 +4,17 @@ import java.io.File
 
 class UtilFunctions {
     companion object {
-        fun readInput(fileName:String): List<String> {
+        fun readInputLines(fileName:String): List<String> {
             try {
                 return File(fileName).readLines()
+            } catch (e: Exception) {
+                throw IllegalStateException(e)
+            }
+        }
+
+        fun readInput(fileName:String): String {
+            try {
+                return File(fileName).readText()
             } catch (e: Exception) {
                 throw IllegalStateException(e)
             }
