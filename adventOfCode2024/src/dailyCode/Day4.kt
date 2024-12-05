@@ -3,7 +3,6 @@ package dailyCode
 import util.UtilFunctions
 import java.awt.Point
 
-
     fun main() {
         val input = UtilFunctions.readInputLines("Day4-2024-Input.txt")
 
