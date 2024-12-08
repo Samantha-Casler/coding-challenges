@@ -49,9 +49,9 @@ fun day6Part1(input: List<String>): Int {
 fun day6Part2(input: List<String>): Int {
     // not sure why now but the x and y seem to be flipped
     // TODO: investigate why this is happening... maybe eventually lol
-    var gardLocation = getInitialGardLocation(input)
+    var gardLocation: Point
     var directionOfTravel: Direction
-    var path = mutableSetOf(gardLocation)
+    var path: MutableSet<Point>
     var consecutiveRepeatSteps = 0
     var validNewObstructionLocations = 0
 
@@ -105,7 +105,7 @@ fun day6Part2(input: List<String>): Int {
 
 fun getInitialGardLocation(input: List<String>): Point {
     var gardLocation = Point(0, 0)
-    input.getPoints().forEach() { p ->
+    input.getPoints().forEach { p ->
         listOf(p).getObstruction(input).forEach() {
             if (it == '^') {
                 gardLocation = p
