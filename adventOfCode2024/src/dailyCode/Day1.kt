@@ -1,9 +1,10 @@
 package dailyCode
 
 import util.UtilFunctions
+import kotlin.time.measureTime
 
 
-    fun main() {
+fun main() {
         val input = UtilFunctions.readInputLines("Day1-2024-Input.txt")
 
         val list1: MutableList<String> = ArrayList()
@@ -17,8 +18,8 @@ import util.UtilFunctions
             list2.add(numbers[1])
         }
 
-        day1Part2(list1, list2)
-        day1Part1(list1, list2)
+        println(measureTime { day1Part2(list1, list2) })
+        println(measureTime { day1Part1(list1, list2) })
 
         println("Merry Christmas!")
     }
