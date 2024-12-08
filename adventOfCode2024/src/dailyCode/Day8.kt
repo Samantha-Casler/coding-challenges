@@ -31,13 +31,19 @@ fun main() {
     }
     day8Part1(antennaFrequencies)
 
-    println("Total anti-node locations: ${antiNodeLocations.size}")
+    println("Total anti-node locations part 1: ${antiNodeLocations.size}")
+
+    antiNodeLocations.clear()
+
+    day8Part2(antennaFrequencies)
+
+    println("Total anti-node locations part 2: ${antiNodeLocations.size}")
 
     println("Merry Christmas!")
 }
 
 fun day8Part1(antennaFrequencies: MutableMap<Char, MutableList<Point>> ) {
-    antennaFrequencies.forEach { (antenna, locations) ->
+    antennaFrequencies.forEach { (_, locations) ->
         var i = 0
         while (i < locations.size) {
             val current = locations[i]
@@ -59,6 +65,51 @@ fun day8Part1(antennaFrequencies: MutableMap<Char, MutableList<Point>> ) {
                     if (it.x < 0 || it.y < 0 || it.x >= numLines || it.y >= numColumns) {
                     } else {
                         antiNodeLocations.add(it)
+                    }
+                }
+
+                j++
+            }
+            i++
+        }
+    }
+}
+
+fun day8Part2(antennaFrequencies: MutableMap<Char, MutableList<Point>> ) {
+    antennaFrequencies.forEach { (_, locations) ->
+        var i = 0
+        antiNodeLocations.addAll(locations)
+        while (i < locations.size) {
+            val current = locations[i]
+            var j = i + 1
+            while (j < locations.size) {
+                val next = locations[j]
+                val xDiff = next.x - current.x
+                val yDiff = next.y - current.y
+
+                var validAntinode = true
+                var workingPoint = current
+                while (validAntinode) {
+                    Point(workingPoint.x - xDiff, workingPoint.y - yDiff).let {
+                        if (it.x < 0 || it.y < 0 || it.x >= numLines || it.y >= numColumns) {
+                            validAntinode = false
+                        } else {
+                            antiNodeLocations.add(it)
+                            workingPoint = it
+                        }
+                    }
+                }
+
+                validAntinode = true
+                workingPoint = next
+                while (validAntinode) {
+                    Point(workingPoint.x + xDiff, workingPoint.y + yDiff).let {
+                        if (it.x < 0 || it.y < 0 || it.x >= numLines || it.y >= numColumns) {
+                            validAntinode = false
+                        } else {
+                            antiNodeLocations.add(it)
+                            workingPoint = it
+                        }
                     }
                 }
 
