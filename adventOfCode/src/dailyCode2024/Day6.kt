@@ -1,4 +1,4 @@
-package dailyCode
+package dailyCode2024
 
 import util.UtilFunctions
 import java.awt.Point
@@ -106,7 +106,7 @@ fun day6Part2(input: List<String>): Int {
 fun getInitialGardLocation(input: List<String>): Point {
     var gardLocation = Point(0, 0)
     input.getPoints().forEach { p ->
-        listOf(p).getObstruction(input).forEach() {
+        listOf(p).getObstruction(input).forEach {
             if (it == '^') {
                 gardLocation = p
             }

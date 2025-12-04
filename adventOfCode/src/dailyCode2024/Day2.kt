@@ -1,4 +1,4 @@
-package dailyCode
+package dailyCode2024
 
 import util.UtilFunctions
 import kotlin.math.abs
