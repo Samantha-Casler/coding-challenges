@@ -14,7 +14,7 @@ class UtilFunctions {
 
         fun readInput(fileName:String): String {
             try {
-                return File(fileName).readText()
+                return File(fileName).readText().trim()
             } catch (e: Exception) {
                 throw IllegalStateException(e)
             }
